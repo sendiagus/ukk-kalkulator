@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Web</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #282c34;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      max-width: 400px;
+      margin-top: 50px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .btn {
+      font-size: 1.5em;
+      padding: 15px;
+      margin: 5px;
+    }
+
+    #result {
+      font-size: 2em;
+      text-align: right;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+      color: #007bff;
+    }
+
+    .btn-light {
+      background-color: #61dafb;
+      color: #282c34;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: #ffffff;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: #ffffff;
+    }
+
+    .btn-info {
+      background-color: #17a2b8;
+      color: #ffffff;
+    }
+
+    .btn-warning {
+      background-color: #ffc107; /* Warna kuning untuk tombol Backspace */
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="result"></div>
+    <div class="row">
+      <button class="btn btn-info col" onclick="appendToResult('7')">7</button>
+      <button class="btn btn-info col" onclick="appendToResult('8')">8</button>
+      <button class="btn btn-info col" onclick="appendToResult('9')">9</button>
+      <button class="btn btn-danger col" onclick="appendToResult('/')">/</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-info col" onclick="appendToResult('4')">4</button>
+      <button class="btn btn-info col" onclick="appendToResult('5')">5</button>
+      <button class="btn btn-info col" onclick="appendToResult('6')">6</button>
+      <button class="btn btn-danger col" onclick="appendToResult('*')">*</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-info col" onclick="appendToResult('1')">1</button>
+      <button class="btn btn-info col" onclick="appendToResult('2')">2</button>
+      <button class="btn btn-info col" onclick="appendToResult('3')">3</button>
+      <button class="btn btn-danger col" onclick="appendToResult('-')">-</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-info col" onclick="appendToResult('0')">0</button>
+      <button class="btn btn-info col" onclick="appendToResult('.')">.</button>
+      <button class="btn btn-info col" onclick="appendToResult('+')">+</button>
+      <button class="btn btn-danger col" onclick="clearResult()">C</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-warning col" onclick="backspace()">Backspace</button>
+      <button class="btn btn-success col" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <script>
+    function appendToResult(value) {
+      document.getElementById('result').innerHTML += value;
+    }
+
+    function clearResult() {
+      document.getElementById('result').innerHTML = '';
+    }
+
+    function calculateResult() {
+      try {
+        const result = eval(document.getElementById('result').innerHTML);
+        document.getElementById('result').innerHTML = result;
+      } catch (error) {
+        document.getElementById('result').innerHTML = 'Error';
+      }
+    }
+
+    function backspace() {
+      var result = document.getElementById('result').innerHTML;
+      document.getElementById('result').innerHTML = result.slice(0, -1);
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
